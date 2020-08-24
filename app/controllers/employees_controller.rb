@@ -1,25 +1,28 @@
+# frozen_string_literal: true
+
+# app/controllers/employees_controller.rb
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :set_employee, only: %i[show edit update destroy]
 
   # GET /employees
   # GET /employees.json
   def index
-    if params[:search].present?
-      @employees = Employee.where(
-        'lower(name) LIKE ? OR lower(email) LIKE ? OR lower(role) LIKE ?', 
-        "%#{params[:search].downcase}%", 
-        "%#{params[:search].downcase}%", 
-        "%#{params[:search].downcase}%"
-      )
-    else
-      @employees = Employee.all
-    end
+    @employees =
+      if params[:search].present?
+        Employee.where(
+          'lower(name) LIKE ? OR lower(email) LIKE ? OR lower(role) LIKE ?',
+          "%#{params[:search].downcase}%",
+          "%#{params[:search].downcase}%",
+          "%#{params[:search].downcase}%"
+        )
+      else
+        Employee.all
+      end
   end
 
   # GET /employees/1
   # GET /employees/1.json
-  def show
-  end
+  def show; end
 
   # GET /employees/new
   def new
@@ -27,15 +30,14 @@ class EmployeesController < ApplicationController
   end
 
   # GET /employees/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /employees
   # POST /employees.json
   def create
     @employee = Employee.new(employee_params)
 
-    # TODO slack 
+    # TODO: slack
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -64,7 +66,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    # TODO slack 
+    # TODO: slack
     @employee.destroy
     respond_to do |format|
       format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
@@ -73,14 +75,14 @@ class EmployeesController < ApplicationController
   end
 
   private
-  
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employee
-      @employee = Employee.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def employee_params
-      params.require(:employee).permit(:name, :email, :role, :salary)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_employee
+    @employee = Employee.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def employee_params
+    params.require(:employee).permit(:name, :email, :role, :salary)
+  end
 end

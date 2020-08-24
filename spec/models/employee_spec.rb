@@ -1,6 +1,8 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe Employee, type: :model do
+require('rails_helper')
+
+RSpec.describe(Employee, type: :model) do
   it { is_expected.to(validate_presence_of(:name)) }
   it { is_expected.to(validate_presence_of(:email)) }
   it { is_expected.to(validate_presence_of(:role)) }
