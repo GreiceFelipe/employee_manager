@@ -20,14 +20,14 @@
           <div class="buttons">
             <% unless manager_signed_in? %>
               <a class="button is-primary" href='/managers/sign_up'>
-                <strong>Cadastre-se</strong>
+                <strong>Sign up</strong>
               </a>
               <a class="button is-light" href='/managers/sign_in'>
-                Entrar
+                Login 
               </a>
             <% end %>  
             <% if manager_signed_in? %>
-              <%= link_to "Sair", destroy_manager_session_path, method: :delete, class: 'button is-light'  %>
+              <%= link_to "Logout", destroy_manager_session_path, method: :delete, class: 'button is-light'  %>
             <% end %>
           </div>
         </div>

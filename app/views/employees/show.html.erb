@@ -1,0 +1,39 @@
+<section class="section">
+    <% if notice.present? %>
+      <div class="notification is-info is-light">
+        <p id="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+  <div class="container column is-half">
+    <h1 class="is-size-2 is-size-1-mobile has-text-centered">
+      <%= @employee.name %>
+    </h1>
+  </div>
+
+  <div class="container column is-half">
+    <p class="has-text-centered">
+      <strong>Email:</strong> <%= @employee.email %>
+    </p>
+  </div>
+
+  <div class="container column is-half">
+    <p class="has-text-centered">
+      <strong>Role:</strong> <%= @employee.role %>
+    </p>
+  </div>
+
+  <div class="container column is-half">
+    <p class="has-text-centered">
+      <strong>Salary:</strong> <%= number_to_currency(@employee.salary, unit: "R$", separator: ",", delimiter: "") %>
+    </p>
+  </div>
+
+  <div class="container column is-one-fifth center">
+    <%= link_to 'Edit', edit_employee_path(@employee), class: "button is-fullwidth is-rounded is-outlined is-dark" %> 
+  </div>
+
+  <div class="container column is-one-fifth center">
+    <%= link_to 'Back', employees_path, class: "button is-fullwidth is-rounded is-outlined is-link" %>
+  </div>
+</section>

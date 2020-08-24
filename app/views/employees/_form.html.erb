@@ -1,0 +1,56 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation" class="notification is-danger is-light">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% employee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= form.text_field :name, class: "input", placeholder: "Full name" %>
+      <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+      </span>
+    </p>
+  </div>
+
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= form.text_field :email, class: "input", placeholder: "Email" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+    </p>
+  </div>
+
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= form.text_field :role, class: "input", placeholder: "Role" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-briefcase"></i>
+      </span>
+    </p>
+  </div>
+
+  <div class="field">
+    <p class="control has-icons-left">
+      <%= form.number_field :salary, value: form.object.salary.to_f, step: :any, class: "input", placeholder: "Salary" %>
+      <span class="icon is-small is-left">
+        <i class="fas fa-money-bill-alt"></i>
+      </span>
+    </p>
+  </div>
+
+  <br/>
+  <div class="field">
+    <p class="control center">
+      <%= form.submit nil, class: 'button is-fullwidth is-rounded is-primary' %>
+    </p>
+  </div>
+<% end %>
