@@ -1,24 +1,33 @@
-# README
+# Employee manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+This is a simple application for managing employees.
 
-* Ruby version
+* Ruby version 2.6.3
 
-* System dependencies
+* Rails version 6.0.3
 
-* Configuration
+* PostgreSQL 
 
-* Database creation
+* Rspec rails version 4.0.1
 
-* Database initialization
+### Configuration
 
-* How to run the test suite
+Run `bundle install` to to install all the rails dependencies
 
-* Services (job queues, cache servers, search engines, etc.)
+Run `yarn install --check-files ` to install all nodes dependencies
 
-* Deployment instructions
+In the development environment create the `.evn` file using `.env.example` as an example
 
-* ...
+### Database creation
+
+To create database run `rails db:create`  
+
+### Database initialization
+
+To create all tables in database run `rails db:migrate`
+
+### How to run the test suite
+
+To run models test `rspec` 
+
