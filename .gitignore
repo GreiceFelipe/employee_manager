@@ -31,6 +31,7 @@
 data.yml
 .DS_Store
 .byebug_history
+.env
 
 # Ignore assets
 /coverage/*

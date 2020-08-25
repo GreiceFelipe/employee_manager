@@ -37,9 +37,11 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
-    # TODO: slack
     respond_to do |format|
       if @employee.save
+        notifier = Slack::Notifier.new ENV['WEBHOOK_URL']
+        notifier.ping "Employee #{@employee.name.strip} was successfully created. :memo:"
+
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
       else
@@ -66,8 +68,13 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    # TODO: slack
+    name = @employee.name
+
     @employee.destroy
+
+    notifier = Slack::Notifier.new ENV['WEBHOOK_URL']
+    notifier.ping "Employee #{name.strip} was successfully destroyed. :wastebasket:"
+    
     respond_to do |format|
       format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
       format.json { head :no_content }

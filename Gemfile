@@ -33,6 +33,9 @@ gem('bootsnap', '>= 1.4.2', require: false)
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem('devise')
 
+# A simple wrapper to send notifications to Slack webhooks.
+gem('slack-notifier')
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem('byebug', platforms: %i[mri mingw x64_mingw])
@@ -44,6 +47,8 @@ group :development, :test do
   gem('faker', '~> 2.1', '>= 2.1.2')
   # Simple one-liner tests for common Rails functionality https://matchers.shoulda.io
   gem('shoulda-matchers')
+  # Shim to load environment variables from .env into ENV in development
+  gem('dotenv-rails')
 end
 
 group :development do
