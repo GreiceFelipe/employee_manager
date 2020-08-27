@@ -31,3 +31,7 @@ To create all tables in database run `rails db:migrate`
 
 To run models test `rspec` 
 
+#### Others
+
+Run `rubocop` to view all rubocop offences
+
